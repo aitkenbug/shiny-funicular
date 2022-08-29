@@ -3,8 +3,11 @@
 ### **numpy:**
 Se importa una libreria de claculo matematico para python, donde se utilizan las siguientes funciones:
 
-    np.zeros()
-    np.inf
+- **np.zeros():** 
+- **np.inf:**
+- **np.linalg.norm():**
+- **np.array():**
+
 
 ### **random:**
 ### **matplotlib:**
