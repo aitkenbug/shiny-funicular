@@ -114,7 +114,7 @@ Se utiliza la libreria k-means de sklearn para realizar el argoritmo de K-Means 
 
 ## **Comparacion de datos y tiempos**
 
-    Se utiliza la libreria de timeit para comparar los tiempos de cada manera de calcular los K-Means
+Se utiliza la libreria de timeit para comparar los tiempos de cada manera de calcular los K-Means
 
     from timeit import timeit as timeit
 
