@@ -31,7 +31,7 @@ Libreria de graficos para python, utilizada para generar graficos y figuras en 2
 - **timeit.timeit():**
 
 ## **Parte 1.2**
-Se utiliza la libreria k-means
+Se utiliza la libreria k-means de mlpack que realiza los calculos en C++
 
     import mlpack  #Se importa mlpack
     d = mlpack.kmeans(clusters=k, input=data, max_iterations=300)
@@ -104,3 +104,64 @@ centroide_i=(suma de datos que tienen el label i)/(cantidad de datos con label i
     return centroids
 
 ## **Parte 3**
+Se utiliza la libreria k-means de sklearn para realizar el argoritmo de K-Means con librerias en python
+
+    kMeans = sklearn.cluster.KMeans(k, max_iter=300)
+    kMeans.fit(data)
+    means = kMeans.cluster_centers_
+
+    #print(means)
+
+## **Comparacion de datos y tiempos**
+
+    Se utiliza la libreria de timeit para comparar los tiempos de cada manera de calcular los K-Means
+
+    from timeit import timeit as timeit
+
+    veces=100
+    tiempos1=np.zeros(veces)
+    tiempos2=np.zeros(veces)
+    tiempos3=np.zeros(veces)
+
+    s0='''
+    import mlpack
+    import sklearn.datasets
+    import sklearn.cluster
+    import scipy.cluster.vq
+    n = 100
+    k = 3
+    data, labels = sklearn.datasets.make_blobs(
+        n_samples=n, n_features=2, centers=k)
+    '''
+
+    s1 = '''
+    from __main__ import k_means
+    import numpy as np 
+    import random
+    import sklearn.datasets
+    import sklearn.cluster
+    import scipy.cluster.vq
+    n = 100
+    k = 3
+    data, labels = sklearn.datasets.make_blobs(
+        n_samples=n, n_features=2, centers=k)
+    '''
+
+    s2='''
+    import sklearn.datasets
+    import sklearn.cluster
+    import scipy.cluster.vq
+    n = 100
+    k = 3
+    data, labels = sklearn.datasets.make_blobs(
+        n_samples=n, n_features=2, centers=k)
+    kMeans = sklearn.cluster.KMeans(k, max_iter=300)
+    kMeans.fit(data)
+    '''
+
+    for vez in range(veces):
+    tiempos1[vez]=timeit("mlpack.kmeans(clusters=3, input=data, max_iterations=300)", number=1, setup=s0)
+    tiempos2[vez]=timeit("k_means(data, 3, 300)",number=1, setup=s1)
+    tiempos3[vez]=timeit("kMeans.cluster_centers_",number=1, setup=s2)
+
+    print(tiempos1)
