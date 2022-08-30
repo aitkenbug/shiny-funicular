@@ -22,4 +22,85 @@ Libreria de graficos para python, utilizada para generar graficos y figuras en 2
 - **plt.show():** Imprime la figura ploteada
 ### **scipy:**
 ### **mlpack:**
-### **sklearn:** 
+- **mlpack.kmeans():** 
+### **sklearn:**
+- **sklearn.dataset.make_blobs():**
+- **sklearn.cluster.KMeans():**
+- **sklearn.cluster.KMeans.fit():**
+### **timeit:**
+- **timeit.timeit():**
+
+## **Parte 1.2**
+Se utiliza la libreria k-means
+
+    import mlpack  #Se importa mlpack
+    d = mlpack.kmeans(clusters=k, input=data, max_iterations=300)
+    centroid = d['centroid']
+    output = d['output'] 
+
+## **Parte 2**
+
+Basado en el código publicado en la página stanford.edu escrita por Chris Piech acerca de KMeans
+
+### **Se crea la función k_means**
+
+**k_means:** recibe la data (un np.array), el número de clusters y el máximo de iteraciones, entrega los centroides de los datos clasificados.
+
+    import numpy as np
+    import random
+
+
+    def k_means(data, n, max_iter): 
+    centroids=random.choices(data, k=n)           #Primeros centroides se eligen aleatorios
+    iters=0 
+    while iters <= max_iter:                      #condición de término 1: que las iteraciones lleguen al máximo (300)
+        oldCentroids = centroids                    #Se actualizan los antiguos centroides
+        iters+=1                                    #Se agrega uno al número de iteraciones hechas
+        labels = getlabels(data, centroids)         #Se actualizan los labels
+        centroids = getCentroids(data, labels, n)   #Se actualizan los centroides
+        if np.array_equal(oldCentroids, centroids): #condición de término 2: que los centroides dejen de cambiar
+        break
+    
+    return centroids
+
+### **Se crea la función getlabels**
+
+**getlabels:** recibe la data (un np.array) y los centroides (de la iteración correspondiente, si se usa fuera de k_means, entrega los labels con los centroides que se le den), entrega un np.array con los labels de cada dato en orden (los labels son 0, 1 o 2 en este caso).
+
+    def getlabels(datos, cents): 
+    labels=np.zeros(datos.shape[0])
+
+    for j in range(len(datos)):                  #Se hace un for para ir uno por uno en los datos
+        min=np.inf                  
+        for i in range(len(cents)):                #Se hace otro for por los centroides, donde se busca la menor distancia entre los centroides y el dato actual 
+        diff = datos[j]-cents[i]
+        dist=np.linalg.norm(diff)                #Se calcula la distancia entre el punto y el centroide actual
+        if min>=dist:                            #si la distancia es menor que la registrada como mínima, 
+            labels[j]=i                            #se asigna el índice del centroide al label del dato (que como son 3, el índice es 0, 1 o 2)
+            min=dist                               #se cambia el mínimo para comparar con la distancia del siguiente centroide
+    
+    return labels
+
+### **Se crea la función getCentroids**
+
+**getCentroids:** recibe la data (un np.array), los labels actuales y el número de clusters, entrega un np.array con los centroides actualizados.
+
+Para esta función se calcula directamente en la fórmula para cada centroide:
+
+centroide_i=(suma de datos que tienen el label i)/(cantidad de datos con label i)
+
+    def getCentroids(datos, labels, n):
+    centroids=np.zeros((n,2))
+    for i in range(n):
+        
+        sum0=np.array([0,0], dtype='float64')
+        sum1=0
+        for j in range(len(labels)):
+        if labels[j]==i:
+            sum0 += datos[j]
+            sum1 += 1
+        centroids[i]=sum0 / sum1
+
+    return centroids
+
+## **Parte 3**
