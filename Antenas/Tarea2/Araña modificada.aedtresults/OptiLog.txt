@@ -1,0 +1,42 @@
+Start Setting up the engine.
+The problem is defined in a 1 dimensional parameter space.
+Set up the Filter CF calculation data (optional)
+Get the interface for FEM solutions
+Get the interface for CF( experiment ) solutions
+Create an empty engine.
+The problem is constrained into the box:
+  box lower limits -10 
+  box upper limits 10 
+The problem is focused into the box:
+  box lower limits -10 
+  box upper limits 10 
+There is 0 solved experiment!
+Domain Limit 1  * X < 10
+Domain Limit -1  * X < 10
+There are 0 Box-Constraints.
+There are 0 Box-Exclusion-Constraints.
+There are 0 Linear-Constraints.
+There are 0 User-Defined-Constraints.
+The maximum number of FEM analysis is 1000.
+Optimization will stop when the relative gradient is less than 1e-08.
+The analysis starts from -0.4 
+Finished setting up the engine.
+Adjust the grid spacing
+SnapLevel is set from 0 to 4 
+Experiments are not going to snapped
+Starting the optimization from here! 
+ -0.4 
+ActiveGridIs not Active 
+SnapFrom 0.48   To  0.48 
+the num of output in derivAvailable = 2
+SolveVariationWithDeriv() failed mEngine->mnRetCode=13
+
+   **************** Time Stamp Sun Oct  2 17:08:02 2022
+
+SolveVariation() Failed = 13
+SolveExperiment() Failed
+Error Condition During Optimization
+ErrorCode: 4
+InFile: NA
+AtLine: 0
+Message: External solver for experiments failed!

@@ -1,0 +1,20 @@
+$begin 'RFSM'
+	$begin 'RadSurfs'
+	$end 'RadSurfs'
+	$begin 'CustomSurfs'
+	$end 'CustomSurfs'
+	$begin 'SetupSolns'
+		$begin 'SetupSolnEntry'
+			Key(ParentID=0, VersID=1, ParentID=28, VersID=0, Context='0:0', DesVarn='', IntrVarn='Freq=\'1.09GHz\'')
+			SetupSolnFBOFile='188969801664652189261.tmp'
+		$end 'SetupSolnEntry'
+	$end 'SetupSolns'
+	$begin 'MonostaticRcsSolns'
+	$end 'MonostaticRcsSolns'
+	$begin 'RadiatedPowerCaches'
+		$begin 'RadiatedPowerCacheEntry'
+			RadiatedPowerCacheKey(ParentID=28, VersID=0, DesVarn='', IntrVarn='Freq=\'1.09GHz\'', Context='0:0', FaceListID=-1)
+			RadiatedPowerCache=0.00643004
+		$end 'RadiatedPowerCacheEntry'
+	$end 'RadiatedPowerCaches'
+$end 'RFSM'

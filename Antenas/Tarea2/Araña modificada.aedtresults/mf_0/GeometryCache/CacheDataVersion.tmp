@@ -1,0 +1,7 @@
+$begin 'CacheDataVersion'
+	DataVersion=-1
+$end 'CacheDataVersion'
+$begin 'VariableValues'
+	$lambda='(300/1090) meter'
+	I='-30mm'
+$end 'VariableValues'
